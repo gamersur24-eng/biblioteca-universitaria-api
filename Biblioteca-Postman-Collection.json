@@ -1,0 +1,348 @@
+{
+  "info": {
+    "name": "Biblioteca Universitaria API",
+    "description": "Colección completa de endpoints para el Sistema de Gestión de Biblioteca Universitaria",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:9000",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Autenticación",
+      "item": [
+        {
+          "name": "1. Registrar Admin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"email\": \"admin@biblioteca.com\",\n  \"password\": \"admin123\",\n  \"nombreCompleto\": \"Administrador Sistema\",\n  \"telefono\": \"999888777\",\n  \"roles\": [\"ADMIN\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "2. Login Admin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "3. Registrar Usuario Normal",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"maria.garcia\",\n  \"email\": \"maria@universidad.edu\",\n  \"password\": \"password123\",\n  \"nombreCompleto\": \"María García\",\n  \"telefono\": \"987654321\",\n  \"roles\": [\"USUARIO\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Libros",
+      "item": [
+        {
+          "name": "4. Crear Libro",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isbn\": \"978-0134685991\",\n  \"titulo\": \"Effective Java\",\n  \"autor\": \"Joshua Bloch\",\n  \"editorial\": \"Addison-Wesley\",\n  \"categoria\": \"Programación\",\n  \"anioPublicacion\": 2018,\n  \"cantidadDisponible\": 5,\n  \"cantidadTotal\": 5,\n  \"descripcion\": \"Guía completa de mejores prácticas en Java\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/libros",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "libros"]
+            }
+          }
+        },
+        {
+          "name": "5. Listar Todos los Libros",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/libros",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "libros"]
+            }
+          }
+        },
+        {
+          "name": "6. Obtener Libro por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/libros/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "libros", "1"]
+            }
+          }
+        },
+        {
+          "name": "7. Actualizar Libro",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isbn\": \"978-0134685991\",\n  \"titulo\": \"Effective Java 3rd Edition\",\n  \"autor\": \"Joshua Bloch\",\n  \"editorial\": \"Addison-Wesley\",\n  \"categoria\": \"Programación\",\n  \"anioPublicacion\": 2018,\n  \"cantidadDisponible\": 8,\n  \"cantidadTotal\": 10,\n  \"descripcion\": \"Guía completa y actualizada de mejores prácticas en Java\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/libros/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "libros", "1"]
+            }
+          }
+        },
+        {
+          "name": "8. Buscar por Título",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/libros/buscar/titulo?titulo=Java",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "libros", "buscar", "titulo"],
+              "query": [
+                {
+                  "key": "titulo",
+                  "value": "Java"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "9. Buscar por Autor",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/libros/buscar/autor?autor=Bloch",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "libros", "buscar", "autor"],
+              "query": [
+                {
+                  "key": "autor",
+                  "value": "Bloch"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Préstamos",
+      "item": [
+        {
+          "name": "10. Crear Préstamo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuario\": { \"id\": 2 },\n  \"libro\": { \"id\": 1 },\n  \"fechaPrestamo\": \"2025-12-01\",\n  \"fechaDevolucionPrevista\": \"2025-12-15\",\n  \"observaciones\": \"Préstamo regular\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/prestamos",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "prestamos"]
+            }
+          }
+        },
+        {
+          "name": "11. Listar Todos los Préstamos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/prestamos",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "prestamos"]
+            }
+          }
+        },
+        {
+          "name": "12. Mis Préstamos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/prestamos/mis-prestamos",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "prestamos", "mis-prestamos"]
+            }
+          }
+        },
+        {
+          "name": "13. Registrar Devolución",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/prestamos/1/devolucion",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "prestamos", "1", "devolucion"]
+            }
+          }
+        },
+        {
+          "name": "14. Préstamos por Estado",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/prestamos/estado/ACTIVO",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "prestamos", "estado", "ACTIVO"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Validaciones",
+      "item": [
+        {
+          "name": "15. Error Sin Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isbn\": \"978-1234567890\",\n  \"titulo\": \"Test Sin Token\",\n  \"autor\": \"Autor Test\",\n  \"editorial\": \"Editorial Test\",\n  \"categoria\": \"Test\",\n  \"anioPublicacion\": 2024,\n  \"cantidadDisponible\": 1,\n  \"cantidadTotal\": 1,\n  \"descripcion\": \"Prueba sin token\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/libros",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "libros"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
