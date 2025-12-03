@@ -348,9 +348,9 @@ logging.level.com.idat.biblioteca=DEBUG
 - ✅ Ver listado de libros
 - ✅ Buscar libros
 - ✅ Ver sus propios préstamos
-- ❌ No puede crear/editar libros
-- ❌ No puede crear préstamos (solo ADMIN)
-- ❌ No puede ver préstamos de otros usuarios
+- ✅  crear/editar libros
+- ✅ crear préstamos (solo ADMIN)
+- ✅  ver préstamos de otros usuarios
 
 ## 📦 Estructura del Proyecto
 
@@ -396,21 +396,4 @@ src/main/java/com/idat/biblioteca/
 - **Informe Técnico:** Incluye capturas de pruebas y diagramas
 - **Diagrama ER:** Modelo de base de datos en MySQL Workbench
 
-## 🎓 Información Académica
 
-**Proyecto:** Sistema de Gestión de Biblioteca Universitaria  
-**Curso:** Desarrollo de Aplicaciones con Spring Boot  
-**Institución:** IDAT  
-**Año:** 2025  
-
-## 📄 Licencia
-
-Este proyecto fue desarrollado con fines académicos para IDAT.
-
-## ✉️ Contacto
-
-Para consultas sobre este proyecto, contactar a través de la plataforma académica de IDAT.
-
----
-
-**Desarrollado con ❤️ usando Spring Boot** 🍃
